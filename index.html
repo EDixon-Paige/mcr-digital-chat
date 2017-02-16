@@ -83,18 +83,19 @@
 </div>
     <div class="row">
 
-        <div class="form-inline col-xs-10">
+        <div class="messaging form-inline col-xs-10">
             <div class="form-group">
                 <label for="name">Display Name:</label>
                 <input type="text" class="form-control" id="name" placeholder="Jane Doe">
             </div>
             <div class="form-group">
-                <label for="comment">Comment:</label>
-                <input type="text" id="comment" class="form-control" placeholder="comment goes here" >
+                <label for="message">Comment:</label>
+                <input type="text" id="message" class="form-control" placeholder="comment goes here" >
             </div>
             <button id="send" class="btn btn-default">Post comment</button>
         </div>
-            <div class="signinout col-xs-2 form-group">
+
+        <div class="signinout col-xs-2 form-group">
                 <button id="signin" class="btn btn-primary">Sign in</button>
                 <button id="signout" class="btn btn-warning">Sign out</button>
             </div>
@@ -116,7 +117,7 @@
 </div>
 
 <div class="well">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/3PyrgGTFp0E?ecver=1" frameborder="0" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/eJnWPhSQjPs?ecver=1" frameborder="0" allowfullscreen></iframe>
 </div>
 <div class="row">
     <div class="col-xs-12 col-md-6">
@@ -134,7 +135,7 @@
 
  var chat = new Chat();
 
-  chat.setMessageInput($("#comment"));
+chat.setMessageInput($("#message"));
   chat.setDisplayNameInput($("#name"));
   chat.setSubmitButton($("#send"));
   chat.setSignInButton($("#signin"));
