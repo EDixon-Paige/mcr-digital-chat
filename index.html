@@ -66,6 +66,9 @@
     </style>
 
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/simplechat.js"></script>
 </head>
 <!--eskipaper.com/imhttp://ages/cityscape-10.jpg-->
 
@@ -78,25 +81,30 @@
 <div class="jumbotron">
     <h2>Hello <span id="my-name">World</span>!</h2>
 </div>
-<div class="form-inline">
-    <div class="form-group">
-        <label for="name">Display Name:</label>
-        <input type="text" class="form-control" id="name" placeholder="Jane Doe">
+    <div class="row">
+
+        <div class="form-inline col-xs-10">
+            <div class="form-group">
+                <label for="name">Display Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Jane Doe">
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <input type="text" id="comment" class="form-control" placeholder="comment goes here" >
+            </div>
+            <button id="send" class="btn btn-default">Post comment</button>
+        </div>
+            <div class="signinout col-xs-2 form-group">
+                <button id="signin" class="btn btn-primary">Sign in</button>
+                <button id="signout" class="btn btn-warning">Sign out</button>
+            </div>
     </div>
-    <div class="form-group">
-        <label for="comment">Comment:</label>
-        <input type="text" id="comment" class="form-control" placeholder="comment goes here" >
-    </div>
-    <button id="addComment" class="btn btn-default">Post comment</button>
-</div>
 <div class="row">
 
     <hr>
     <div class="col-md-12">
         <div class="col-md-8">
             <h2>Comments</h2>
-            <div id="comments">
-            </div>
         </div>
     </div>
 
@@ -123,28 +131,21 @@
 
 <!-- Build your app here-->
 <script>
-           function addComment(name, comment){
-                var date = new Date();
 
-                var html = '<div class="comment row">' +
-                        '<div class="commentator col-xs-7"> ' + name + ' says: </div>' +
-                        '<div class="col-xs-12 commentText">' + comment + '</div>' +
-                        '<div class="col-xs-12 commentDate">' + date.toLocaleDateString() + '</div>' +
-                                '<hr class="col-xs-12" >'+
-                        '</div>';
+ var chat = new Chat();
 
-                $(html).hide().appendTo("#comments").fadeIn(400);
-                $("#name").val('');
-                $("#comment").val('');
-                name = '';
-                comment = '';
-            }
+  chat.setMessageInput($("#comment"));
+  chat.setDisplayNameInput($("#name"));
+  chat.setSubmitButton($("#send"));
+  chat.setSignInButton($("#signin"));
+  chat.setSignOutButton($("#signout"));
+  chat.setMessageList($("#messages"));
 
-            $("#addComment").click(function(){
-                var name = $("#name").val();
-                var comment = $("#comment").val();
-                addComment(name, comment);
-            });
+  $("#send").on("click", function(){chat.sendMessage()});
+  $("#signin").on("click", function(){chat.signIn()});
+  $("#signout").on("click", function(){chat.signOut()});
+chat.listenForMessages();
+
 function changeColour() {
 var colour = prompt("please enter your favourite colour", "Blue");
 if (colour != null) {
