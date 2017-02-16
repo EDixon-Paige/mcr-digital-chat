@@ -2,6 +2,14 @@
 
 <html lang="en">
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Learn how to use the Firebase platform on the Web">
@@ -28,14 +36,115 @@
           href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    @font-face {
+    font-family: 'aaarghnormal';
+    src:    url('Aaargh-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+        body {font-family:aaarghnormal;}
+        .parallax {
+        background-image: url("/lamborghini_centenario_hyper_car-2560x1600 (2).jpg");
+        height: 700px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+        .parallax2 {
+        background-image: url("http://eskipaper.com/images/bmw-m4-wallpaper-hd-1.jpg");
+        height: 500px;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-rpeat
+        background size: cover;
+        }
+    </style>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 </head>
-<body>
+<!--eskipaper.com/imhttp://ages/cityscape-10.jpg-->
+
+
+
+<body class="container">
+    <div class="parallax"></div>
+    <div class="parallax2"></div>
+
+<div class="jumbotron">
+    <h2>Hello <span id="my-name">World</span>!</h2>
+</div>
+<div class="form-inline">
+    <div class="form-group">
+        <label for="name">Display Name:</label>
+        <input type="text" class="form-control" id="name" placeholder="Jane Doe">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment" class="form-control" placeholder="comment goes here" >
+    </div>
+    <button id="addComment" class="btn btn-default">Post comment</button>
+</div>
+<div class="row">
+
+    <hr>
+    <div class="col-md-12">
+        <div class="col-md-8">
+            <h2>Comments</h2>
+            <div id="comments">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <ul id="messages">
+        </ul>
+    </div>
+
+</div>
+
+<div class="well">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3PyrgGTFp0E?ecver=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <button class="btn btn-default btn-block" id="change name" onclick="myFunction()">Try it</button>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <button class="btn btn-default btn-block" id="change name" onclick="changeColour()">
+            <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
 
 <!-- Build your app here-->
-<h2>Hello <span id="my-name">World</span>!</h2>
-<button id="change name" onclick="myFunction()">Try it</button>
-<button id="change name" onclick="changeColour()">Try it</button>
 <script>
+           function addComment(name, comment){
+                var date = new Date();
+
+                var html = '<div class="comment row">' +
+                        '<div class="commentator col-xs-7"> ' + name + ' says: </div>' +
+                        '<div class="col-xs-12 commentText">' + comment + '</div>' +
+                        '<div class="col-xs-12 commentDate">' + date.toLocaleDateString() + '</div>' +
+                                '<hr class="col-xs-12" >'+
+                        '</div>';
+
+                $(html).hide().appendTo("#comments").fadeIn(400);
+                $("#name").val('');
+                $("#comment").val('');
+                name = '';
+                comment = '';
+            }
+
+            $("#addComment").click(function(){
+                var name = $("#name").val();
+                var comment = $("#comment").val();
+                addComment(name, comment);
+            });
 function changeColour() {
 var colour = prompt("please enter your favourite colour", "Blue");
 if (colour != null) {
